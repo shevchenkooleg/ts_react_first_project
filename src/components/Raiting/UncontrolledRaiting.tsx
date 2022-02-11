@@ -11,11 +11,50 @@ export function UncontrolledRaiting() {
 
     return (
         <div>
-            <Star selected={star > 0}/><button onClick={ () => {setStar(1)} }>1</button>
-            <Star selected={star > 1}/><button onClick={ () => {setStar(2)} }>2</button>
-            <Star selected={star > 2}/><button onClick={ () => {setStar(3)} }>3</button>
-            <Star selected={star > 3}/><button onClick={ () => {setStar(4)} }>4</button>
-            <Star selected={star > 4}/><button onClick={ () => {setStar(5)} }>5</button>
+            <Star selected={star > 0}/>
+            <button onClick={() => {
+                if (star !== 1) {
+                    setStar(1)
+                } else {
+                    setStar(0)
+                }
+            }}>1</button>
+
+            <Star selected={star > 1}/>
+            <button onClick={() => {
+                if (star !== 2) {
+                    setStar(2)
+                } else {
+                    setStar(0)
+                }
+            }}>2</button>
+
+            <Star selected={star > 2}/>
+            <button onClick={() => {
+                if (star !== 3) {
+                    setStar(3)
+                } else {
+                    setStar(0)
+                }
+            }}>3</button>
+
+            <Star selected={star > 3}/>
+            <button onClick={() => {
+                if (star !== 4) {
+                    setStar(4)
+                } else {
+                    setStar(0)
+                }
+            }}>4</button>
+
+            <Star selected={star > 4}/>
+            <button onClick={() => {
+                if (star !== 5) {
+                    setStar(5)
+                } else {
+                    setStar(0)
+                }
+            }}>5</button>
         </div>
     )
 }
@@ -29,8 +68,8 @@ function Star(props: StarPropsType) {
 
     return (
         <>
-            { props.selected && <span><b>star</b> </span>}
-            { !props.selected && <span>star </span>}
+            {props.selected && <span><b>star</b> </span>}
+            {!props.selected && <span>star </span>}
         </>
     )
 }
