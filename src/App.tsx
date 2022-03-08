@@ -1,32 +1,40 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Accordion from "./components/Accordion/Accordion";
-import {Raiting} from "./components/Raiting/Raiting";
-import OnOff from "./components/OnOff/OnOff";
+import {Rating} from "./components/Rating/Rating";
+import UncontrolledOnOff from "./components/OnOff/UncontrolledOnOff";
 import UncontrolledAccordion from "./components/Accordion/UncontrolledAccordion";
-import UncontrolledRaiting from "./components/Raiting/UncontrolledRaiting";
+import UncontrolledRating from "./components/Rating/UncontrolledRating";
+import OnOff from "./components/OnOff/OnOff";
 
+export type RatingValueType = 0 | 1 | 2 | 3 | 4 | 5
 
 function App() {
     console.log('App rendering')
+
+    let [ratingValue, setRatingValue] = useState<RatingValueType>(3)
+    let [accordionCollapsed, setAccordionCollapsed] = useState(false)
+    let [isOnControlled, setIsOnControlled] = useState(false)
+
     return (
-        <div>
+        <div className={'App'}>
             <PageTitle title={'This is APP component'}/>
             {/*<PageTitle title={'My friends'}/>*/}
             {/*Article 1*/}
-            {/*<Raiting value={3}/>*/}
-            <UncontrolledAccordion titleValue={'Menu'} />
-            {/*<Accordion titleValue={'Menu'} collapsed={false}/>*/}
-            <UncontrolledAccordion titleValue={'Users'} />
-            {/*<Accordion titleValue={'Users'} collapsed={true}/>*/}
+            <Rating value={ratingValue} onClick={ setRatingValue }/>
+            {/*<UncontrolledAccordion titleValue={'Menu'}/>*/}
+            <Accordion titleValue={'Menu'} collapsed={accordionCollapsed} onClick={setAccordionCollapsed}/>
+            {/*<UncontrolledAccordion titleValue={'Users'}/>*/}
+            {/*<Accordion titleValue={'Users'} collapsed={accordionCollapsed} onClick={setAccordionCollapsed}/>*/}
             {/*Article 2*/}
-            {/*<Raiting value={0}/>*/}
-            {/*<Raiting value={1}/>*/}
-            <UncontrolledRaiting/>
-            {/*<Raiting value={3}/>*/}
-            {/*<Raiting value={4}/>*/}
-            {/*<Raiting value={5}/>*/}
-            <OnOff />
+            {/*<Rating value={0}/>*/}
+            {/*<Rating value={1}/>*/}
+            <UncontrolledRating/>
+            {/*<Rating value={3}/>*/}
+            {/*<Rating value={4}/>*/}
+            {/*<Rating value={5}/>*/}
+            {/*<UncontrolledOnOff/>*/}
+            <OnOff isOn={isOnControlled} SetIsOn={setIsOnControlled}/>
         </div>
     );
 }
@@ -37,7 +45,7 @@ type PageTitlePropsType = {
 
 function PageTitle(props: PageTitlePropsType) {
     console.log('PageTitle rendering')
-    return(
+    return (
 
         <h1>
             {props.title}

@@ -1,12 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 type OnOffPropsType = {
-    isOn: boolean
-    SetIsOn: (isOn:boolean) => void
+    // isOn: boolean
 }
 
-const OnOff = (props: OnOffPropsType) => {
-
+const UncontrolledOnOff = () => {
+    let [isOn, SetIsOn] = useState(false)
 
     const contentStyle = {
         marginTop: '20px',
@@ -15,7 +14,7 @@ const OnOff = (props: OnOffPropsType) => {
         display: 'inline-block',
         width: '50px',
         height: '20px',
-        backgroundColor: props.isOn ? 'green' : 'white',
+        backgroundColor: isOn ? 'green' : 'white',
         border: 'black 1px solid',
         marginLeft: '3px',
     }
@@ -24,7 +23,7 @@ const OnOff = (props: OnOffPropsType) => {
         display: 'inline-block',
         width: '50px',
         height: '20px',
-        backgroundColor: props.isOn ? 'white' : 'red',
+        backgroundColor: isOn ? 'white' : 'red',
         border: 'black 1px solid',
         marginLeft: '3px',
     };
@@ -34,7 +33,7 @@ const OnOff = (props: OnOffPropsType) => {
         width: '10px',
         height: '10px',
         borderRadius: '5px',
-        backgroundColor: props.isOn ? 'green' : 'red',
+        backgroundColor: isOn ? 'green' : 'red',
         border: 'black 1px solid',
         marginLeft: '5px',
     };
@@ -42,18 +41,12 @@ const OnOff = (props: OnOffPropsType) => {
 
     return (
         <div style={contentStyle}>
-            <div onClick={() => {
-                props.SetIsOn(true)
-            }} style={onButtonStyle}>On
-            </div>
-            <div onClick={() => {
-                props.SetIsOn(false)
-            }} style={offButtonStyle}>Off
-            </div>
+            <div onClick={ () => { SetIsOn(true) }} style={onButtonStyle}>On</div>
+            <div onClick={ () => { SetIsOn(false) }} style={offButtonStyle}>Off</div>
             <div style={blinkerStyle}></div>
         </div>
     )
 }
 
 
-export default OnOff;
+export default UncontrolledOnOff;
